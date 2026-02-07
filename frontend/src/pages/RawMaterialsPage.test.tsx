@@ -18,7 +18,6 @@ describe('RawMaterialsPage', () => {
 
     const user = userEvent.setup();
 
-    // Open the form dialog
     await user.click(screen.getByRole('button', { name: /nova matéria-prima/i }));
 
     const dialog = await screen.findByRole('dialog');
@@ -62,7 +61,6 @@ describe('RawMaterialsPage', () => {
 
     const user = userEvent.setup();
 
-    // Open the form dialog
     await user.click(screen.getByRole('button', { name: /nova matéria-prima/i }));
 
     const dialog = await screen.findByRole('dialog');
@@ -92,11 +90,7 @@ describe('RawMaterialsPage', () => {
 
     await screen.findByText('Aço');
 
-    const deleteButtons = screen.getAllByRole('button');
-    const deleteButton = deleteButtons.find((btn) =>
-      btn.querySelector('svg.lucide-trash-2')
-    )!;
-    await userEvent.setup().click(deleteButton);
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Excluir' }));
 
     expect(await screen.findByText('Excluir matéria-prima')).toBeInTheDocument();
   });

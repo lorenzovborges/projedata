@@ -26,11 +26,6 @@ export function ProductForm({ editingItem, loading, onSubmit }: ProductFormProps
   );
   const [formError, setFormError] = useState<string | null>(null);
 
-  const resetForm = () => {
-    setForm({ code: '', name: '', value: '' });
-    setFormError(null);
-  };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormError(null);
@@ -53,7 +48,6 @@ export function ProductForm({ editingItem, loading, onSubmit }: ProductFormProps
         name: form.name.trim(),
         value,
       });
-      resetForm();
     } catch (error) {
       setFormError(String(error));
     }
@@ -102,11 +96,9 @@ export function ProductForm({ editingItem, loading, onSubmit }: ProductFormProps
         </Alert>
       )}
 
-      <div className="flex gap-2">
-        <Button type="submit" disabled={loading}>
-          {editingItem ? 'Atualizar produto' : 'Salvar produto'}
-        </Button>
-      </div>
+      <Button type="submit" disabled={loading}>
+        {editingItem ? 'Atualizar produto' : 'Salvar produto'}
+      </Button>
     </form>
   );
 }

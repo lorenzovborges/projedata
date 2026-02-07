@@ -53,7 +53,6 @@ describe('ProductsPage', () => {
 
     const user = userEvent.setup();
 
-    // Open the form dialog
     await user.click(screen.getByRole('button', { name: /novo produto/i }));
 
     const dialog = await screen.findByRole('dialog');
@@ -87,7 +86,6 @@ describe('ProductsPage', () => {
 
     const user = userEvent.setup();
 
-    // Open the form dialog
     await user.click(screen.getByRole('button', { name: /novo produto/i }));
 
     const dialog = await screen.findByRole('dialog');
@@ -115,8 +113,7 @@ describe('ProductsPage', () => {
 
     await screen.findByText('Produto Teste');
 
-    const compositionButton = screen.getByTitle('Composição');
-    await userEvent.setup().click(compositionButton);
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Composição' }));
 
     expect(await screen.findByRole('dialog')).toBeInTheDocument();
     expect(screen.getByText('Composição: Produto Teste')).toBeInTheDocument();
@@ -137,11 +134,7 @@ describe('ProductsPage', () => {
 
     await screen.findByText('Produto Teste');
 
-    const deleteButtons = screen.getAllByRole('button');
-    const deleteButton = deleteButtons.find((btn) =>
-      btn.querySelector('svg.lucide-trash-2')
-    )!;
-    await userEvent.setup().click(deleteButton);
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Excluir' }));
 
     expect(await screen.findByText('Excluir produto')).toBeInTheDocument();
     expect(screen.getByText('Cancelar')).toBeInTheDocument();
@@ -162,11 +155,7 @@ describe('ProductsPage', () => {
 
     await screen.findByText('Produto Teste');
 
-    const editButtons = screen.getAllByRole('button');
-    const editButton = editButtons.find((btn) =>
-      btn.querySelector('svg.lucide-pencil')
-    )!;
-    await userEvent.setup().click(editButton);
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Editar' }));
 
     const dialog = await screen.findByRole('dialog');
     const dialogScope = within(dialog);

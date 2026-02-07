@@ -3,6 +3,7 @@ import { toast } from 'sonner';
 import { Pencil, Trash2, Plus } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
+  clearRawMaterialsError,
   createRawMaterial,
   deleteRawMaterial,
   fetchRawMaterials,
@@ -32,8 +33,11 @@ export function RawMaterialsPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
+    if (error) {
+      toast.error(error);
+      dispatch(clearRawMaterialsError());
+    }
+  }, [error, dispatch]);
 
   const handleOpenNew = () => {
     setEditingItem(null);
@@ -60,7 +64,6 @@ export function RawMaterialsPage() {
     }
     setFormOpen(false);
     setEditingItem(null);
-    await dispatch(fetchRawMaterials());
   };
 
   const handleConfirmDelete = async () => {
@@ -112,10 +115,10 @@ export function RawMaterialsPage() {
                 <TableCell className="font-mono text-sm">{rm.stockQuantity.toFixed(3)}</TableCell>
                 <TableCell>
                   <div className="flex gap-1">
-                    <Button variant="ghost" size="icon" onClick={() => handleOpenEdit(rm)}>
+                    <Button variant="ghost" size="icon" aria-label="Editar" onClick={() => handleOpenEdit(rm)}>
                       <Pencil className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" onClick={() => setDeleteTarget(rm.id)}>
+                    <Button variant="ghost" size="icon" aria-label="Excluir" onClick={() => setDeleteTarget(rm.id)}>
                       <Trash2 className="h-4 w-4 text-danger-600" />
                     </Button>
                   </div>

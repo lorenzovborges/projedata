@@ -3,7 +3,7 @@ import { AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select } from '@/components/ui/select';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { RawMaterial } from '@/types';
 
@@ -59,22 +59,22 @@ export function CompositionForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-[1fr_1fr_auto] gap-4 items-end">
-        <div className="space-y-2">
+        <div className="flex flex-col gap-2">
           <Label htmlFor="comp-material">Matéria-prima</Label>
-          <Select
-            id="comp-material"
-            value={rawMaterialId}
-            onChange={(e) => setRawMaterialId(e.target.value)}
-          >
-            <option value="">Selecione</option>
-            {rawMaterials.map((rm) => (
-              <option key={rm.id} value={rm.id}>
-                {rm.code} - {rm.name}
-              </option>
-            ))}
+          <Select value={rawMaterialId} onValueChange={setRawMaterialId}>
+            <SelectTrigger id="comp-material">
+              <SelectValue placeholder="Selecione" />
+            </SelectTrigger>
+            <SelectContent>
+              {rawMaterials.map((rm) => (
+                <SelectItem key={rm.id} value={String(rm.id)}>
+                  {rm.code} - {rm.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
           </Select>
         </div>
-        <div className="space-y-2">
+        <div className="flex flex-col gap-2">
           <Label htmlFor="comp-qty">Quantidade necessária</Label>
           <Input
             id="comp-qty"

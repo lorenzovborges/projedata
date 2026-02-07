@@ -3,6 +3,7 @@ import { toast } from 'sonner';
 import { Pencil, Trash2, ListTree, Plus } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
+  clearProductsError,
   createProduct,
   deleteProduct,
   fetchProducts,
@@ -37,8 +38,11 @@ export function ProductsPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
+    if (error) {
+      toast.error(error);
+      dispatch(clearProductsError());
+    }
+  }, [error, dispatch]);
 
   const handleOpenNew = () => {
     setEditingItem(null);
@@ -65,7 +69,6 @@ export function ProductsPage() {
     }
     setFormOpen(false);
     setEditingItem(null);
-    await dispatch(fetchProducts());
   };
 
   const handleConfirmDelete = async () => {
@@ -122,18 +125,18 @@ export function ProductsPage() {
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-1">
-                    <Button variant="ghost" size="icon" onClick={() => handleOpenEdit(product)}>
+                    <Button variant="ghost" size="icon" aria-label="Editar" onClick={() => handleOpenEdit(product)}>
                       <Pencil className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="ghost"
                       size="icon"
+                      aria-label="Composição"
                       onClick={() => setCompositionProduct(product)}
-                      title="Composição"
                     >
                       <ListTree className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" onClick={() => setDeleteTarget(product.id)}>
+                    <Button variant="ghost" size="icon" aria-label="Excluir" onClick={() => setDeleteTarget(product.id)}>
                       <Trash2 className="h-4 w-4 text-danger-600" />
                     </Button>
                   </div>

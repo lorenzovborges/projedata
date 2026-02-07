@@ -26,11 +26,6 @@ export function RawMaterialForm({ editingItem, loading, onSubmit }: RawMaterialF
   );
   const [formError, setFormError] = useState<string | null>(null);
 
-  const resetForm = () => {
-    setForm({ code: '', name: '', stockQuantity: '' });
-    setFormError(null);
-  };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormError(null);
@@ -53,7 +48,6 @@ export function RawMaterialForm({ editingItem, loading, onSubmit }: RawMaterialF
         name: form.name.trim(),
         stockQuantity,
       });
-      resetForm();
     } catch (error) {
       setFormError(String(error));
     }
@@ -102,11 +96,9 @@ export function RawMaterialForm({ editingItem, loading, onSubmit }: RawMaterialF
         </Alert>
       )}
 
-      <div className="flex gap-2">
-        <Button type="submit" disabled={loading}>
-          {editingItem ? 'Atualizar matéria-prima' : 'Salvar matéria-prima'}
-        </Button>
-      </div>
+      <Button type="submit" disabled={loading}>
+        {editingItem ? 'Atualizar matéria-prima' : 'Salvar matéria-prima'}
+      </Button>
     </form>
   );
 }

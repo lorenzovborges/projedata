@@ -63,7 +63,6 @@ export function CompositionDialog({ product, onClose }: CompositionDialogProps) 
       toast.success('Matéria-prima adicionada à composição.');
     }
     setEditingCompositionId(null);
-    await dispatch(fetchProductMaterials(product.id));
   };
 
   const handleConfirmDelete = async () => {

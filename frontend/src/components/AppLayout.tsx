@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Package, Layers, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import logoProjedata from '@/assets/logo-projedata.png';
 
 const links = [
   { to: '/products', label: 'Produtos', icon: Package },
@@ -11,14 +12,9 @@ const links = [
 export function AppLayout() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-primary-800 bg-primary-700 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600 text-sm font-bold text-white">
-              P
-            </div>
-            <span className="text-lg font-bold text-slate-900">Projedata</span>
-          </div>
+          <img src={logoProjedata} alt="Projedata" className="h-8" />
 
           <nav className="flex items-center gap-1" aria-label="Navegação principal">
             {links.map((link) => (
@@ -29,8 +25,8 @@ export function AppLayout() {
                   cn(
                     'flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors',
                     isActive
-                      ? 'bg-primary-50 text-primary-700'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                      ? 'bg-white/20 text-white'
+                      : 'text-white/70 hover:bg-white/10 hover:text-white'
                   )
                 }
               >

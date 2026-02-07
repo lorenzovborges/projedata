@@ -101,8 +101,9 @@ describe('Fluxo principal de cadastro e simulação', () => {
     cy.get('[role="dialog"]').should('be.visible');
 
     // Add composition
+    cy.get('[role="dialog"]').find('button[role="combobox"]').click();
+    cy.get('[role="option"]').contains('RM-001 - Aço').click();
     cy.get('[role="dialog"]').within(() => {
-      cy.get('select').select('RM-001 - Aço');
       cy.get('input[placeholder="0.000"]').type('4');
       cy.contains('button', 'Adicionar à composição').click();
     });

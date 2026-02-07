@@ -54,11 +54,3 @@ export interface ProductionSuggestionResponse {
   items: ProductionSuggestionItem[];
   totalProductionValue: number;
 }
-
-export interface ApiErrorResponse {
-  timestamp: string;
-  status: number;
-  error: string;
-  message: string;
-  path: string;
-}

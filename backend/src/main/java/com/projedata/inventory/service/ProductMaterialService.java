@@ -77,7 +77,7 @@ public class ProductMaterialService {
         productRawMaterialRepository.findByProductIdAndRawMaterialId(productId, rawMaterialId)
             .ifPresent(found -> {
                 if (currentId == null || !found.getId().equals(currentId)) {
-                    throw new ConflictException("This raw material is already associated with the selected product");
+                    throw new ConflictException("Esta matéria-prima já está associada ao produto selecionado");
                 }
             });
     }
