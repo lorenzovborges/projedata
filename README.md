@@ -4,7 +4,7 @@ Sistema web completo para controle de produtos, matérias-primas e simulação d
 
 ## Stack
 
-- Backend: Spring Boot 3.4, Java 21, Maven, JPA, Flyway, PostgreSQL
+- Backend: Spring Boot 3.5.10, Java 21, Maven, JPA, Flyway, PostgreSQL
 - Frontend: React + Vite + TypeScript + Redux Toolkit + React Router + Axios
 - Banco: PostgreSQL 16
 - Testes:
