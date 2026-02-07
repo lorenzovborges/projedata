@@ -105,10 +105,10 @@ export function ProductsPage() {
         <CardContent>
           <DataTable
             columns={[
-              { header: 'Código' },
-              { header: 'Nome' },
-              { header: 'Valor' },
-              { header: 'Ações', className: 'w-[160px]' },
+              { header: 'Código', className: 'text-center' },
+              { header: 'Nome', className: 'text-center' },
+              { header: 'Valor', className: 'text-center' },
+              { header: 'Ações', className: 'w-[160px] text-center' },
             ]}
             loading={loading}
             isEmpty={items.length === 0}
@@ -116,15 +116,15 @@ export function ProductsPage() {
           >
             {items.map((product) => (
               <TableRow key={product.id}>
-                <TableCell>
+                <TableCell className="text-center">
                   <Badge>{product.code}</Badge>
                 </TableCell>
-                <TableCell className="font-medium">{product.name}</TableCell>
-                <TableCell className="font-mono text-sm">
+                <TableCell className="font-medium text-center">{product.name}</TableCell>
+                <TableCell className="font-mono text-sm text-center">
                   {currencyFormatter.format(product.value)}
                 </TableCell>
                 <TableCell>
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 justify-center">
                     <Button variant="ghost" size="icon" aria-label="Editar" onClick={() => handleOpenEdit(product)}>
                       <Pencil className="h-4 w-4" />
                     </Button>

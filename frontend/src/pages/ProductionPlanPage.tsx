@@ -93,11 +93,11 @@ export function ProductionPlanPage() {
         <CardContent>
           <DataTable
             columns={[
-              { header: 'Código' },
-              { header: 'Produto' },
-              { header: 'Valor unitário' },
-              { header: 'Qtd. sugerida' },
-              { header: 'Subtotal' },
+              { header: 'Código', className: 'text-center' },
+              { header: 'Produto', className: 'text-center' },
+              { header: 'Valor unitário', className: 'text-center' },
+              { header: 'Qtd. sugerida', className: 'text-center' },
+              { header: 'Subtotal', className: 'text-center' },
             ]}
             loading={loading}
             isEmpty={items.length === 0}
@@ -105,15 +105,15 @@ export function ProductionPlanPage() {
           >
             {items.map((item) => (
               <TableRow key={item.productId}>
-                <TableCell>
+                <TableCell className="text-center">
                   <Badge variant="secondary">{item.productCode}</Badge>
                 </TableCell>
-                <TableCell className="font-medium">{item.productName}</TableCell>
-                <TableCell className="font-mono text-sm">
+                <TableCell className="font-medium text-center">{item.productName}</TableCell>
+                <TableCell className="font-mono text-sm text-center">
                   {currencyFormatter.format(item.unitValue)}
                 </TableCell>
-                <TableCell className="font-semibold">{item.suggestedQuantity}</TableCell>
-                <TableCell className="font-mono text-sm">
+                <TableCell className="font-semibold text-center">{item.suggestedQuantity}</TableCell>
+                <TableCell className="font-mono text-sm text-center">
                   {currencyFormatter.format(item.subtotalValue)}
                 </TableCell>
               </TableRow>

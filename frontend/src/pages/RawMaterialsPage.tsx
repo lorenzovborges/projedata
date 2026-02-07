@@ -97,10 +97,10 @@ export function RawMaterialsPage() {
         <CardContent>
           <DataTable
             columns={[
-              { header: 'Código' },
-              { header: 'Nome' },
-              { header: 'Estoque' },
-              { header: 'Ações', className: 'w-[120px]' },
+              { header: 'Código', className: 'text-center' },
+              { header: 'Nome', className: 'text-center' },
+              { header: 'Estoque', className: 'text-center' },
+              { header: 'Ações', className: 'w-[120px] text-center' },
             ]}
             loading={loading}
             isEmpty={items.length === 0}
@@ -108,13 +108,13 @@ export function RawMaterialsPage() {
           >
             {items.map((rm) => (
               <TableRow key={rm.id}>
-                <TableCell>
+                <TableCell className="text-center">
                   <Badge variant="secondary">{rm.code}</Badge>
                 </TableCell>
-                <TableCell className="font-medium">{rm.name}</TableCell>
-                <TableCell className="font-mono text-sm">{rm.stockQuantity.toFixed(3)}</TableCell>
+                <TableCell className="font-medium text-center">{rm.name}</TableCell>
+                <TableCell className="font-mono text-sm text-center">{rm.stockQuantity.toFixed(3)}</TableCell>
                 <TableCell>
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 justify-center">
                     <Button variant="ghost" size="icon" aria-label="Editar" onClick={() => handleOpenEdit(rm)}>
                       <Pencil className="h-4 w-4" />
                     </Button>
